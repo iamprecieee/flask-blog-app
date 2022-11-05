@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %} 
+<form method="POST">
+    <br>
+    <h1 align="center" style="color:#0960ec"> HELLO THERE!</h1>
+    <div class="form-group">
+        <fieldset>
+            <label for="email" style="color:#0960ec"> EMAIL:</label>
+            <input type="text" name="email" id="email" class="form-control" placeholder="Enter Email" required>
+        </fieldset>
+        <br>
+        <fieldset>
+            <label for="password" style="color:#0960ec"> PASSWORD:</label>
+            <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" required>
+        </fieldset>
+        <br>
+        <fieldset align="center"> 
+            <button type="submit" id="button" class="btn btn-primary">SUBMIT</button>
+        </fieldset>
+    </div>
+</form>
+{% endblock %}

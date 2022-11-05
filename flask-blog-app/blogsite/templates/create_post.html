@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %} 
+<br>
+<h1 align="center" style="color:#0960ec">CREATE A POST</h1>
+
+<form method="POST">
+  <br>
+  <div><h5 style="color:#0960ec">TITLE:</h5>
+  <input name="title" id="title" class="form-control"></input>
+</div>
+  <br />
+    <br>
+    <div><h5 style="color:#0960ec">TEXT:</h5>
+    <textarea name="text" id="result" class="form-control"></textarea>
+  </div>
+    <br />
+    <div align="center">
+      <button type="submit" class="btn btn-lg btn-primary">POST</button>
+    </div>
+  </form>
+  <br />
+  <div align="center">
+    <a href="/home"><button type="button" class="btn btn-lg btn-secondary">BACK</button></a>
+  </div>
+{% endblock %}
