@@ -99,6 +99,7 @@ def create_comment(post_id):
                 text=text, author=current_user.id, post_id=post_id)
             db.session.add(comment)
             db.session.commit()
+            flash('Comment created.', category='success')
         else:
             flash('Post does not exist.', category='error')
 
@@ -117,7 +118,7 @@ def delete_comment(comment_id):
     else:
         db.session.delete(comment)
         db.session.commit()
-
+        flash('Comment deleted.', category='success')
     return redirect(url_for('views.home'))
 
 
