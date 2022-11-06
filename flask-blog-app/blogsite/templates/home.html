@@ -104,6 +104,7 @@
     </div>
     <br>
     {% block footer %}
+    {% if current_user.is_authenticated %}
     <div align="center">
       <a href="/create-post"
         ><button type="button" class="btn btn-primary btn-lg">
@@ -111,5 +112,6 @@
         </button></a
       >
     </div>
+    {% endif %}
     {% endblock %} {% endblock %}
     
