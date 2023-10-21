@@ -15,8 +15,7 @@ def login():
         email = request.form.get("email")
         password = request.form.get("password")
 
-        user = User.query.filter_by(email=email).first()
-        if user:
+        if user := User.query.filter_by(email=email).first():
             if check_password_hash(user.password, password):
                 flash(f"Good to have you back {user.firstname}", category='success')
                 login_user(user, remember=True)
@@ -46,8 +45,7 @@ def sign_up():
         password1 = request.form.get("password1")
         password2 = request.form.get("password2")
 
-        email_exists = User.query.filter_by(email=email).first()
-        if email_exists:
+        if email_exists := User.query.filter_by(email=email).first():
             flash('Email already exists!', category='error')
         elif password1 != password2:
             flash('Password does not match.', category='error')
@@ -64,7 +62,7 @@ def sign_up():
 
             return redirect(url_for('views.home'))
 
-        
+
     return render_template("signup.html")
 
 
