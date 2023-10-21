@@ -88,13 +88,8 @@ def posts(email):
 @views.route("/create-comment/<post_id>", methods=['POST'])
 @login_required
 def create_comment(post_id):
-    text = request.form.get('text')
-
-    if not text:
-        flash('Comment cannot be empty.', category='error')
-    else:
-        post = Post.query.filter_by(id=post_id)
-        if post:
+    if text := request.form.get('text'):
+        if post := Post.query.filter_by(id=post_id):
             comment = Comment(
                 text=text, author=current_user.id, post_id=post_id)
             db.session.add(comment)
@@ -103,6 +98,8 @@ def create_comment(post_id):
         else:
             flash('Post does not exist.', category='error')
 
+    else:
+        flash('Comment cannot be empty.', category='error')
     return redirect(url_for('views.home'))
 
 
@@ -113,7 +110,7 @@ def delete_comment(comment_id):
 
     if not comment:
         flash('Comment does not exist.', category='error')
-    elif current_user.id != comment.author and current_user.id != comment.post.author:
+    elif current_user.id not in [comment.author, comment.post.author]:
         flash('You do not have permission to delete this comment.', category='error')
     else:
         db.session.delete(comment)
